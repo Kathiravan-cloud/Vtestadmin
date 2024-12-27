@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         env:
-          DOCKER_USERNAME: kathiravan.thangavel@vthink.co.in
+          DOCKER_USERNAME: kathiravan007
           DOCKER_PASSWORD: Kathiravan@007
 
       # Step 4: Build the Docker image
