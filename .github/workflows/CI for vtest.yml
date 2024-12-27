@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from the repository
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -19,17 +19,14 @@ jobs:
       # Step 3: Log in to Docker Hub
       - name: Log in to Docker Hub
         run: |
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        env:
-          DOCKER_USERNAME: kathiravan007
-          DOCKER_PASSWORD: Kathiravan@007
+          echo "Kathiravan@007" | docker login -u "kathiravan007" --password-stdin
 
-      # Step 4: Build the Docker image
-      - name: Build the Docker image
+      # Step 4: Build Docker image
+      - name: Build Docker image
         run: |
-          docker build -t kathiravan.thangavel/vtest-app:latest .
+          docker build -t kathiravan007/vtest-app:latest .
 
-      # Step 5: Push the Docker image to Docker Hub
-      - name: Push the Docker image
+      # Step 5: Push Docker image
+      - name: Push Docker image
         run: |
-          docker push kathiravan.thangavel/vtest-app:latest
+          docker push kathiravan007/vtest-app:latest
