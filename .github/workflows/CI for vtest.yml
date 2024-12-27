@@ -36,13 +36,16 @@ jobs:
       - name: Update Deployment.yaml with new image tag
         run: |
           # Replace the image tag in Deployment.yaml with the new one
-          sed -i 's|image: kathiravan007/vtest-admin-app:latest|image: kathiravan007/vtest-admin-app:${{ github.sha }}|' Deployment-files/Deployment.yaml
+          echo "Replacing image tag in Deployment.yaml..."
+
+          # Generalize the sed command to match the image tag and replace dynamically
+          sed -i "s|image: kathiravan007/vtest-admin-app:[^ ]*|image: kathiravan007/vtest-admin-app:${{ github.sha }}|" Deployment-files/Deployment.yaml
           
-          # Commit and push changes to the repository using a PAT (hardcoded)
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add Deployment-files/Deployment.yaml
-          git commit -m "Update image tag to ${{ github.sha }} in Deployment.yaml"
-          
-          # Use hardcoded PAT for authentication
-          git push https://github-actions:${{ secrets.PAT_TOKEN }}@github.com/Kathiravan-cloud/Vtestadmin.git
+          # Check if the image tag has changed by comparing with the previous commit
+          git diff --exit-code Deployment-files/Deployment.yaml || (
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add Deployment-files/Deployment.yaml
+            git commit -m "Update image tag to ${{ github.sha }} in Deployment.yaml"
+            git push https://github-actions:${{ secrets.GH_TOKEN }}@github.com/Kathiravan-cloud/Vtestadmin.git
+          )
