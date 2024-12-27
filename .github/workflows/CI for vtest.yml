@@ -21,12 +21,12 @@ jobs:
         run: |
           echo "Kathiravan@007" | docker login -u "kathiravan007" --password-stdin
 
-      # Step 4: Build Docker image
+      # Step 4: Build Docker image with dynamic tag (using GITHUB_SHA)
       - name: Build Docker image
         run: |
-          docker build -t kathiravan007/vtest-app:latest .
+          docker build -t kathiravan007/vtest-app:${{ github.sha }} .
 
       # Step 5: Push Docker image
       - name: Push Docker image
         run: |
-          docker push kathiravan007/vtest-app:latest
+          docker push kathiravan007/vtest-app:${{ github.sha }}
