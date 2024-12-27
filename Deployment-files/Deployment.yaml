@@ -4,7 +4,7 @@ metadata:
   name: vtest-admin-app-deployment
   namespace: vtest
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: vtest-admin-app
