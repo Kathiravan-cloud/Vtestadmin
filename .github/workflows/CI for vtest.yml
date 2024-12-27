@@ -44,4 +44,4 @@ jobs:
           git commit -m "Update image tag to ${{ github.sha }} in Deployment.yaml"
           
           # Use hardcoded PAT for authentication
-          git push https://github-actions:${{ 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 }}@github.com/Kathiravan-cloud/Vtestadmin.git
+          git push https://github-actions:${{ secrets.PAT_TOKEN }}@github.com/Kathiravan-cloud/Vtestadmin.git
