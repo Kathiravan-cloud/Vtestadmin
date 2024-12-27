@@ -30,6 +30,7 @@ jobs:
       - name: Push Docker image
         run: |
           docker push kathiravan007/vtest-app:${{ github.sha }}
+          
 
       # Step 6: Update Deployment.yaml with new image tag
       - name: Update Deployment.yaml with new image tag
