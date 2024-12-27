@@ -31,15 +31,17 @@ jobs:
         run: |
           docker push kathiravan007/vtest-app:${{ github.sha }}
 
-      # Step 6: Update Deployment.yaml with the new image tag
+      # Step 6: Update Deployment.yaml with new image tag
       - name: Update Deployment.yaml with new image tag
         run: |
           # Replace the image tag in Deployment.yaml with the new one
           sed -i 's|image: kathiravan007/vtest-admin-app:latest|image: kathiravan007/vtest-admin-app:${{ github.sha }}|' Deployment-files/Deployment.yaml
           
-          # Optionally, you can commit the changes to the repository (if needed)
+          # Commit and push changes to the repository using a PAT (hardcoded)
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add Deployment-files/Deployment.yaml
           git commit -m "Update image tag to ${{ github.sha }} in Deployment.yaml"
-          git push
+          
+          # Use hardcoded PAT for authentication
+          git push https://github-actions:${{ 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 }}@github.com/Kathiravan-cloud/Vtestadmin.git
