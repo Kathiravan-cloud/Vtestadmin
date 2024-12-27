@@ -39,7 +39,7 @@ jobs:
           echo "Replacing image tag in Deployment.yaml..."
 
           # Generalize the sed command to match the image tag and replace dynamically
-          sed -i "s|image: kathiravan007/vtest-admin-app:[^ ]*|image: kathiravan007/vtest-admin-app:${{ github.sha }}|" Deployment-files/Deployment.yaml
+          sed -i "s|image: kathiravan007/vtest-app:[^ ]*|image: kathiravan007/vtest-app:${{ github.sha }}|" Deployment-files/Deployment.yaml
           
           # Check if the image tag has changed by comparing with the previous commit
           git diff --exit-code Deployment-files/Deployment.yaml || (
