@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: vtest-admin-app
-        image: kathiravan007/vtest-admin-app:831cbc731593a004d72b1631e76391e422a1e85b
+        image: kathiravan007/vtest-admin-app:3e2055a6055d7d013c86a8944a507de0c1c31aaa
         ports:
         - containerPort: 80 # Change to the port your app listens to
 ---
