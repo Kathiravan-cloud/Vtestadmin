@@ -37,11 +37,11 @@ jobs:
           # Replace the image tag in Deployment.yaml with the new one
           sed -i 's|image: kathiravan007/vtest-admin-app:latest|image: kathiravan007/vtest-admin-app:${{ github.sha }}|' Deployment-files/Deployment.yaml
           
-          # Commit and push changes to the repository using a PAT (hardcoded)
+          # Commit and push changes to the repository using GITHUB_TOKEN
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add Deployment-files/Deployment.yaml
           git commit -m "Update image tag to ${{ github.sha }} in Deployment.yaml"
           
-          # Use hardcoded PAT for authentication
-          git push https://github-actions:${{ secrets.PAT_TOKEN }}@github.com/Kathiravan-cloud/Vtestadmin.git
+          # Use GITHUB_TOKEN for authentication
+          git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/Kathiravan-cloud/Vtestadmin.git
